@@ -29,11 +29,11 @@
             <form duplicate="0">
                 <header>
                     <button name="action_in_consultation" type="object" string="In Consultation"
-                            invisible="state == 'done' or state == 'in_consultation' or state == 'cancel'"/>
+                          data-hotkey="I"  invisible= "state == 'in_consultation' or state == 'cancel'"/>
                     <button name="action_done" type="object" string="Done"
-                            invisible="state != 'in_consultation'"/>
+                           data-hotkey="v" invisible="state != 'in_consultation'"/>
                     <button name="action_cancel" type="object" string="Cancel"
-                            invisible="state != 'in_consultation'"/>
+                           data-hotkey="z" invisible="state != 'in_consultation'"/>
                     <field name="state" readonly="1" widget="statusbar"/>
                 </header>
                 <sheet>
