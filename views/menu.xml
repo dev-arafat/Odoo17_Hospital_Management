@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+            id="manu_hospital_root"
+            name="Hospital"
+            sequence="10"/>
+
+    <menuitem
+            id="manu_hospital_patient_details"
+            name="Patient Details"
+            parent="manu_hospital_root"
+            sequence="20"/>
+
+        <menuitem
+            id="manu_hospital_appointment_master"
+            name="Appointments"
+            parent="manu_hospital_root"
+            sequence="30"/>
+</odoo>
