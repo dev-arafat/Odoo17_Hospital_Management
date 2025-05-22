@@ -49,13 +49,13 @@
                             <field name="gender"/>
                         </group>
                         <group>
-                            <field name="hide_sale_price"/>
+                            <field name="hide_sale_price" groups="base.group_no_one"/>
                             <field name="appointment_time"/>
                             <field name="booking_date" default_focus="1"/>
                             <field name="ref"/>
-                            <button name="action_button" string="Object Button" type="object" class="oe_highlight"/>
+                            <button name="action_button" string="Object Button" type="object" class="oe_highlight" groups="base.group_no_one"/>
                             <button name="%(om_hospital.action_hospital_patient)d" string="Action Button" type="action"
-                                    confirm="are you sure open the patient action" class="oe_highlight"/>
+                                  groups="base.group_no_one"  confirm="are you sure open the patient action" class="oe_highlight"/>
                         </group>
                     </group>
                     <notebook>
