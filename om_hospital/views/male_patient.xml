@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_hospital_male_patient" model="ir.actions.act_window">
+        <field name="name">male Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'default_gender':'male'}</field>
+        <field name ="domain">"[('gender','=','male')]"</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crate male patient
+            </p>
+        </field>
+    </record>
+    <menuitem
+            id="manu_hospital_female_patient"
+            name="Male Patient"
+            action="action_hospital_male_patient"
+            parent="manu_hospital_patient_details"
+            sequence="40"/>
+</odoo>
