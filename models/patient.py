@@ -10,12 +10,13 @@ from odoo.tools.populate import compute
 class HospitalPatient(models.Model):
     _name = 'hospital.patient'
     _description = 'Hospital Patient'
-    _inherit = ['mail.thread','mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    name = fields.Char(String="Name",required=True,tracking=True)
-    ref = fields.Char(String="Reference",tracking=True)
+    image_1920 = fields.Image(string="Image", max_width=1920, max_height=1920)
+    name = fields.Char(String="Name", required=True, tracking=True)
+    ref = fields.Char(String="Reference", tracking=True)
     birth_date = fields.Date(String="Date of Birth")
-    age = fields.Integer(String="Age",compute='_compute_age',required=True,tracking=True)
+    age = fields.Integer(String="Age", compute='_compute_age', required=True, tracking=True)
     gender = fields.Selection(
         [
             ('male', "Male"),
@@ -27,8 +28,7 @@ class HospitalPatient(models.Model):
         required=True,
         tracking=True
     )
-    active = fields.Boolean(String="active", default=True,tracking=True)
-
+    active = fields.Boolean(String="active", default=True, tracking=True)
 
     @api.depends('birth_date')
     def _compute_age(self):
@@ -36,10 +36,8 @@ class HospitalPatient(models.Model):
             if record.birth_date:
                 today = date.today()
                 age = today.year - record.birth_date.year - (
-                    (today.month, today.day) < (record.birth_date.month, record.birth_date.day)
+                        (today.month, today.day) < (record.birth_date.month, record.birth_date.day)
                 )
                 record.age = age
             else:
                 record.age = 1
-
-
