@@ -6,3 +6,4 @@ class PatientTag(models.Model):
 
     name = fields.Char(String="Name", required=True, tracking=True)
     active = fields.Boolean(string="Active", default=True )
+    colour = fields.Integer(string="Colour")
