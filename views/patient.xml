@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+    <!-- Tree View -->
     <record id="view_patient_list" model="ir.ui.view">
         <field name="name">hospital.patients.list</field>
         <field name="model">hospital.patient</field>
@@ -14,7 +14,7 @@
         </field>
     </record>
 
-
+    <!-- Form View -->
     <record id="patient_view_form" model="ir.ui.view">
         <field name="name">hospital.patient.form</field>
         <field name="model">hospital.patient</field>
@@ -28,25 +28,27 @@
                             <field name="birth_date"/>
                         </group>
                         <group>
-                            <field name="image_1920" widget="image" class="oe_avatar"/>
-                            <field name="ref"/>
-                            <field name="gender"/>
-                            <field name="active" invisible="1"/>
+                            <group>
+                                <field name="image_1920" widget="image" class="oe_avatar"/>
+                                <field name="ref"/>
+                                <field name="gender"/>
+                                <field name="patient_tag" widget="many2many_tags"/>
+                                <field name="active" invisible="1"/>
+                            </group>
                         </group>
                     </group>
-
                 </sheet>
-                <!--chatter-->
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
-                </div>
+
+                <!--                <div class="oe_chatter">-->
+                <!--                    <field name="message_follower_ids"/>-->
+                <!--                    <field name="activity_ids"/>-->
+                <!--                    <field name="message_ids"/>-->
+                <!--                </div>-->
             </form>
         </field>
     </record>
 
-
+    <!-- Search View -->
     <record id="view_patient_search" model="ir.ui.view">
         <field name="name">hospital.patients.search</field>
         <field name="model">hospital.patient</field>
@@ -54,13 +56,12 @@
             <search>
                 <field name="name" string="Patient Name"
                        filter_domain="['|', ('name','ilike',self), ('ref','ilike',self)]"/>
-                <filter name="filter_male" string="Mail" domain="[('gender','=','male')]"/>
-                <filter name="filter_femail" string="Female" domain="[('gender','=','female')]"/>
+                <filter name="filter_male" string="Male" domain="[('gender','=','male')]"/>
+                <filter name="filter_female" string="Female" domain="[('gender','=','female')]"/>
                 <separator/>
-                <!--                <filter name="filter_kids" string="Kids" domain="[('age','&lt;=',5)]"/>-->
                 <filter name="filter_archive" string="Archive" domain="[('active','=',False)]"/>
                 <group expand="0" string="Group By">
-                    <filter string="gender" name="group_by_gender" domain="[]" context="{'group_by':'gender'}"/>
+                    <filter string="Gender" name="group_by_gender" domain="[]" context="{'group_by':'gender'}"/>
                 </group>
                 <field name="ref"/>
                 <searchpanel>
@@ -70,6 +71,7 @@
         </field>
     </record>
 
+    <!-- Action -->
     <record id="action_hospital_patient" model="ir.actions.act_window">
         <field name="name">Patients</field>
         <field name="type">ir.actions.act_window</field>
@@ -78,15 +80,17 @@
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Crate patient
+                Create Patient
             </p>
         </field>
     </record>
+
+    <!-- Submenu -->
     <menuitem
             id="manu_hospital_patient"
             name="Patient"
             action="action_hospital_patient"
             parent="manu_hospital_patient_details"
-            sequence="30"/>On-site)
+            sequence="30"/>
 
 </odoo>
